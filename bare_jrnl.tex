@@ -146,13 +146,11 @@ Para esta investigación se utilizó una red convolucional, que de base para los
 \subsection{Red neuronal}
 
 \section{Experimentos}
-En esta secci´on describen los experimentos ejecutados para
+En esta sección describen los experimentos ejecutados para
 evaluar el aprendizaje que tiene el agente bajo diversos escenarios.
-\subsection{}
-Con este experimento se pretende evaluar como se vería afectado el aprendizaje del agente al utilizar diferentes cantidades de capas de convolucion, diferente cantidad de \emph{kernels} y varios tamanos de \emph{kernels}. Para todos los experimentos se utilizó únicamente una capa \emph{fully-connected}, con dos neuronas de salida. Además, se especifica en cuales capas se aplicó \emph{dropout} y el tamano del \emph{window} utilizado para hacer \emph{pooling} a cada capa.
 
-\subsection{Preprocesamiento de los datos de entrada}
-    Para evaluar los experimentos especificados anteriormente, el conjunto de datos a utilizar serán los estados proporcionados por el entorno donde se encuentra el agente. Se pretende realizar los experimeintos con preprocesamientos de los datos y sin el preprocesamiento.
+\subsection{Experimentos con la red convolucional}
+    Con este experimento se pretende evaluar cómo se vería afectado el aprendizaje del agente al utilizar diferentes cantidades de capas de convolución, diferente cantidad de \emph{kernels} y varios tamaños de \emph{kernels}. Para todos los experimentos se utilizó únicamente una capa \emph{fully-connected}, con dos neuronas de salida. Además, se especifica en cuales capas se aplicó \emph{dropout} y el tamaño del \emph{window} utilizado para hacer \emph{pooling} a cada capa.
     
     \begin{table}[h!]
         \centering
@@ -190,14 +188,18 @@ Con este experimento se pretende evaluar como se vería afectado el aprendizaje 
             \end{tabular}
             \caption{Experimento A3, con 5 capas.\label{tab:A3}}
             \end{table}
+            
+            
+\subsection{Preprocesamiento de los datos de entrada}
+    Para evaluar los experimentos especificados anteriormente, el conjunto de datos a utilizar serán los estados proporcionados por el entorno donde se encuentra el agente. Se pretende realizar los experimeintos con preprocesamiento de los datos y sin el preprocesamiento.
 
-    \subsubsection{Datos sin preprocesar:} Corresptonde a los datos originales proporcionados por el entorno. Cada imagen tiene las siguientes características:
+    \subsubsection{Datos sin preprocesar:} Corresponde a los datos originales proporcionados por el entorno. Cada imagen tiene las siguientes características:
     \begin{itemize}
         \item Tamaño de $512\times288$ píxeles.
         \item Tiene tres canales de color (RGB).
     \end{itemize}
 
-    \subsubsection{Datos preprocesados:} Se pretende realizar algunos ajustes a losdatos originales con el fin de verificar si el modelo aprende más rápido. Cada imagen quedaría con las siguientes características:
+    \subsubsection{Datos preprocesados:} Se pretende realizar algunos ajustes a los datos originales con el fin de verificar si el modelo aprende más rápido. Cada imagen quedaría con las siguientes características:
     \begin{itemize}
         \item Tamaño de $410\times288$ píxeles.
         \item Tiene tres canales de color (escala de grises).
