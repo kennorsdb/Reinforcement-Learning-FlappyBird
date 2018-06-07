@@ -4,7 +4,7 @@
     \selectlanguage{spanish}
     \usepackage[utf8]{inputenc}
     \usepackage{hyperref}
-
+    \usepackage{lipsum}
 
     % *** GRAPHICS RELATED PACKAGES ***
     %
@@ -120,7 +120,7 @@ neural network, gradient descent, softmax, cross-entropy, relu, mnist, machine l
 \subsection{Red Neuronal}
 Para esta investigación se utilizó una red convolucional, que de base para los experimentos tiene tres capas, cada una con una capa de \emph{``MaxPooling''}, la última capa es una red neuronal \emph{``FullyConnected''} con una salida con SoftMax. Las características de cada capa se detallan en el Cuadro~\ref{tab:convDescrip}. Cabe decir que, como parte de la experimientación, se probó con varias convinaciones de red convolucional para comprobar los resultados.
 
-\begin{table}[]
+\begin{table*}[]
     \centering
     
     \begin{tabular}{llllll}
@@ -137,7 +137,7 @@ Para esta investigación se utilizó una red convolucional, que de base para los
     \end{tabular}
     \caption{Descripción de las capas de la Red Convolucional.\label{tab:convDescrip}}
     
-    \end{table}
+    \end{table*}
 
 
 \subsection{Entrenamiento y testing}
@@ -151,12 +151,12 @@ Con este experimento se pretende evaluar como se vería afectado el aprendizaje 
 \subsection{Preprocesamiento de los datos de entrada}
 Para evaluar los experimentos especificados anteriormente, el conjunto de datos a utilizar serán los estados proporcionados por el entorno donde se encuentra el agente. Se pretende realizar los experimeintos con preprocesamientos de los datos y si el preprocesamiento.
 
-\begin{table}[]
+\begin{table}[h!]
     \centering
     
     \begin{tabular}{@{}lllll@{}}
         \toprule
-        Capa & Dropout & Cantidad de Kernels & Tamaño del Kernel & Pooling Window \\ \midrule
+        Capa & Dropout & \textbf{\begin{tabular}[c]{@{}l@{}}Cantidad \\ de Kernels\end{tabular}} & Tamaño del Kernel & Pooling Window \\ \midrule
         1    & No      & 10                  & 5                 & 7              \\
         2    & Sí      & 12                  & 7                 & 5              \\
         3    & No      & 16                  & 11                & 3              \\ \bottomrule
@@ -164,21 +164,21 @@ Para evaluar los experimentos especificados anteriormente, el conjunto de datos 
     \caption{Experimento A1, con 3 capas.\label{tab:A1}}
     \end{table}
 
-    \begin{table}[]
+    \begin{table}[h!]
         \centering
         \begin{tabular}{@{}lllll@{}}
             \toprule
-            Capa & Dropout & Cantidad de Kernels & Tamaño del Kernel & Pooling Window \\ \midrule
+            Capa & Dropout & \textbf{\begin{tabular}[c]{@{}l@{}}Cantidad \\ de Kernels\end{tabular}} & Tamaño del Kernel & Pooling Window \\ \midrule
             1    & No      & 6                   & 11                & 7             
         \end{tabular}
         \caption{Experimento A2, con 1 capa.\label{tab:A2}}
         \end{table}
 
-    \begin{table}[]
+    \begin{table}[h!]
         \centering
         \begin{tabular}{@{}lllll@{}}
             \toprule
-            Capa & Dropout & Cantidad de Kernels & Tamaño del Kernel & Pooling Window \\ \midrule
+            Capa & Dropout & \textbf{\begin{tabular}[c]{@{}l@{}}Cantidad \\ de Kernels\end{tabular}} & Tamaño del Kernel & Pooling Window \\ \midrule
             1    & No      & 6                   & 5                 & 7              \\
             2    & Sí      & 8                   & 7                 & 5              \\
             3    & No      & 12                  & 9                 & 3              \\
