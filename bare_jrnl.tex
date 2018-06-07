@@ -146,61 +146,66 @@ Para esta investigación se utilizó una red convolucional, que de base para los
 \subsection{Red neuronal}
 
 \section{Experimentos}
+En esta secci´on describen los experimentos ejecutados para
+evaluar el aprendizaje que tiene el agente bajo diversos escenarios.
+\subsection{}
 Con este experimento se pretende evaluar como se vería afectado el aprendizaje del agente al utilizar diferentes cantidades de capas de convolucion, diferente cantidad de \emph{kernels} y varios tamanos de \emph{kernels}. Para todos los experimentos se utilizó únicamente una capa \emph{fully-connected}, con dos neuronas de salida. Además, se especifica en cuales capas se aplicó \emph{dropout} y el tamano del \emph{window} utilizado para hacer \emph{pooling} a cada capa.
 
 \subsection{Preprocesamiento de los datos de entrada}
-Para evaluar los experimentos especificados anteriormente, el conjunto de datos a utilizar serán los estados proporcionados por el entorno donde se encuentra el agente. Se pretende realizar los experimeintos con preprocesamientos de los datos y si el preprocesamiento.
-
-\begin{table}[]
-    \centering
+    Para evaluar los experimentos especificados anteriormente, el conjunto de datos a utilizar serán los estados proporcionados por el entorno donde se encuentra el agente. Se pretende realizar los experimeintos con preprocesamientos de los datos y sin el preprocesamiento.
     
-    \begin{tabular}{@{}lllll@{}}
-        \toprule
-        Capa & Dropout & Cantidad de Kernels & Tamaño del Kernel & Pooling Window \\ \midrule
-        1    & No      & 10                  & 5                 & 7              \\
-        2    & Sí      & 12                  & 7                 & 5              \\
-        3    & No      & 16                  & 11                & 3              \\ \bottomrule
-    \end{tabular}
-    \caption{Experimento A1, con 3 capas.\label{tab:A1}}
-    \end{table}
-
-    \begin{table}[]
+    \begin{table}[h!]
         \centering
+        
         \begin{tabular}{@{}lllll@{}}
             \toprule
             Capa & Dropout & Cantidad de Kernels & Tamaño del Kernel & Pooling Window \\ \midrule
-            1    & No      & 6                   & 11                & 7             
+            1    & No      & 10                  & 5                 & 7              \\
+            2    & Sí      & 12                  & 7                 & 5              \\
+            3    & No      & 16                  & 11                & 3              \\ \bottomrule
         \end{tabular}
-        \caption{Experimento A2, con 1 capa.\label{tab:A2}}
+        \caption{Experimento A1, con 3 capas.\label{tab:A1}}
         \end{table}
+    
+        \begin{table}[h!]
+            \centering
+            \begin{tabular}{@{}lllll@{}}
+                \toprule
+                Capa & Dropout & Cantidad de Kernels & Tamaño del Kernel & Pooling Window \\ \midrule
+                1    & No      & 6                   & 11                & 7             
+            \end{tabular}
+            \caption{Experimento A2, con 1 capa.\label{tab:A2}}
+            \end{table}
+    
+        \begin{table}[h!]
+            \centering
+            \begin{tabular}{@{}lllll@{}}
+                \toprule
+                Capa & Dropout & Cantidad de Kernels & Tamaño del Kernel & Pooling Window \\ \midrule
+                1    & No      & 6                   & 5                 & 7              \\
+                2    & Sí      & 8                   & 7                 & 5              \\
+                3    & No      & 12                  & 9                 & 3              \\
+                4    & Sí      & 12                  & 11                & 3              \\
+                5    & No      & 6                   & 11                & 3              \\ \bottomrule
+            \end{tabular}
+            \caption{Experimento A3, con 5 capas.\label{tab:A3}}
+            \end{table}
 
-    \begin{table}[]
-        \centering
-        \begin{tabular}{@{}lllll@{}}
-            \toprule
-            Capa & Dropout & Cantidad de Kernels & Tamaño del Kernel & Pooling Window \\ \midrule
-            1    & No      & 6                   & 5                 & 7              \\
-            2    & Sí      & 8                   & 7                 & 5              \\
-            3    & No      & 12                  & 9                 & 3              \\
-            4    & Sí      & 12                  & 11                & 3              \\
-            5    & No      & 6                   & 11                & 3              \\ \bottomrule
-        \end{tabular}
-        \caption{Experimento A3, con 5 capas.\label{tab:A3}}
-        \end{table}
+    \subsubsection{Datos sin preprocesar:} Corresptonde a los datos originales proporcionados por el entorno. Cada imagen tiene las siguientes características:
+    \begin{itemize}
+        \item Tamaño de $512\times288$ píxeles.
+        \item Tiene tres canales de color (RGB).
+    \end{itemize}
 
-\subsubsection{Datos sin preprocesar:} Corresptonde a los datos originales proporcionados por el entorno. Cada imagen tiene las siguientes características:
-\begin{itemize}
-    \item Tamaño de $512\times288$ píxeles.
-    \item Tiene tres canales de color (RGB).
-\end{itemize}
-
-\subsubsection{Datos preprocesados:} Se pretende realizar algunos ajustes a losdatos originales con el fin de verificar si el modelo aprende más rápido. Cada imagen quedaría con las siguientes características:
-\begin{itemize}
-    \item Tamaño de $410\times288$ píxeles.
-    \item Tiene tres canales de color (escala de grises).
-\end{itemize}
+    \subsubsection{Datos preprocesados:} Se pretende realizar algunos ajustes a losdatos originales con el fin de verificar si el modelo aprende más rápido. Cada imagen quedaría con las siguientes características:
+    \begin{itemize}
+        \item Tamaño de $410\times288$ píxeles.
+        \item Tiene tres canales de color (escala de grises).
+    \end{itemize}
 
 \subsection{Un experimento que se les ocurra}
+
+
 \bibliographystyle{IEEEtran}
 \bibliography{library}
 
