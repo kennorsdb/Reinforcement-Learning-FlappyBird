@@ -10,21 +10,22 @@ class Agente():
         self.policy = Net()
         self.optimizer = optim.Adam(self.policy.parameters(), lr=1e-2)
         self.eps = np.finfo(np.float32).eps.item()
-        self.gamma = 0.99
-        self.ant = 0
+        self.gamma = 0.999
+        self.ant = None
 
     def select_action(self, state):
         state = self.preProc(state)
         state = torch.from_numpy(state).float().unsqueeze(0)
 
         probs = self.policy(state)
-        print(probs)
         m = Categorical(probs)
         action = m.sample()
-        self.policy.saved_log_probs.append(m.log_prob(action))
-        ac = action.item()
-        # print (ac)
-        return  ac #Manda 0 o 1 dependiendo de cual accion escoge
+        #print(self.policy.saved_log_probs)
+        ac = probs.argmax()
+        self.policy.saved_log_probs.append(m.log_prob(probs[0,ac]))
+        #self.policy.saved_log_probs.append(m.log_prob(action))
+        print("{},{}".format(probs,ac))
+        return  action #Manda 0 o 1 dependiendo de cual accion escoge
 
     def finish_episode(self):
         R = 0
@@ -33,8 +34,10 @@ class Agente():
         for r in self.policy.rewards[::-1]: #reverse
             R = r + self.gamma * R
             rewards.insert(0, R)
+        print(rewards)
         rewards = torch.tensor(rewards)
         rewards = (rewards - rewards.mean()) / (rewards.std() + self.eps)
+        print(rewards)
         for log_prob, reward in zip(self.policy.saved_log_probs, rewards):
             policy_loss.append(-log_prob * reward)
         self.optimizer.zero_grad()
@@ -49,7 +52,7 @@ class Agente():
         #plt.pause(0.0000001)
         #plt.imshow(observation[:,:,1], cmap='gray')
         #plt.pause(0.0000001)
-        observation = observation[:410,:,1]
+        observation = observation[:410,:,0]
         observation[observation > 145] = 255
 
         if self.ant is None:
@@ -67,7 +70,6 @@ class Agente():
             reward = -1
         elif reward == 1:
             reward = 1
-        
             
-        print(reward*5)
-        self.policy.rewards.append(reward*5)
+        #print(reward)
+        self.policy.rewards.append(reward)
