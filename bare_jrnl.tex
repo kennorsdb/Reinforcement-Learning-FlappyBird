@@ -73,7 +73,6 @@ neural network, gradient descent, softmax, cross-entropy, relu, mnist, machine l
 \IEEEPARstart{E}{xisten} problemas computacionales que requieren que un programa realice una acción ante un estado determinado, con la agravante que estos estados pueden tener muchas variables diferentes que lo convierten en una tarea prácticamente imposible para una aproximación estática de la solución. Ante estos problemas, surge toda una rama del campo de la Inteligencia Artificial que se llama Aprendizaje Por Reforzamiento \emph{(``Reinforcement Learning'')}, que consiste, en términos generales, en entrenar un algoritmo utilizando premios \emph{(``reward''))} positivos o negativos, según sea el resultado de la acción tomada en un estado dado.
 
 Esta investigación tiene como objetivo implementar un algoritmo de \emph{Reinforcement Learning} conocido como ``Policy Gradient'' para entrenar un modelo computacional para que juegue con éxito ``FlappyBird'', para ello se utilizan herramientas como PyTorch, 
- 
 
 \section{Trabajo relacionado}
 Un dato interesante es que el famoso visionario Turing (1948,1950) propuso una aproximación del aprendizaje por reforzamiento aunque no estaba totalmente convencido de su efectividad: \emph{``... el uso de castigos y premios puede, en el mejor de los casos, ser parte de un proceso de enseñanza.''} \cite{Turing1948,Turing1950}. Se sospecha que la primera investigación exitosa en este campo es la de Arthur Samuel, el cual contiene una buena parte de las ideas modernas en parendizaje por reforzamiento, incluyendo la aproximación utilizando una función \cite{Rusell2010}.
@@ -82,6 +81,8 @@ Desde principios de la década de los 90 se realizaron aportes en el campo del a
 
 Una buena síntesis sobre los métodos que existen actualmente en Policy Gradient se encuentra en \cite{Peters2010}.
 
+
+
 \section{Metodología}
 
 
@@ -89,6 +90,74 @@ Una buena síntesis sobre los métodos que existen actualmente en Policy Gradien
 
 
 \subsection{Red neuronal}
+
+
+\section{Experimentos}
+En esta sección describen los experimentos ejecutados para evaluar el aprendizaje que tiene el agente bajo diversos escenarios.
+
+\subsection{Experimentos con la red convolucional}
+    Con este experimento se pretende evaluar cómo se vería afectado el aprendizaje del agente al utilizar diferentes cantidades de capas de convolución, diferente cantidad de \textit{kernels} y varios tamaños de \textit{kernels}. Para todos los experimentos se utilizó únicamente una capa \textit{fully-connected}, con dos neuronas de salida. Además, se especifica en cuales capas se aplicó \textit{dropout} y el tamaño del \textit{window} utilizado para hacer \textit{pooling} a cada capa.
+    
+    \begin{table}[h!]
+    \centering
+    \begin{tabular}{@{}ccccc@{}}
+    \toprule
+    Capa & Dropout & Cantidad de kernels & Tamaño del kernel & Pooling window\\ \midrule
+    1     & No      & 10                  & 5                 & 7 \\
+    2     & Sí      & 12                  & 7                 & 5 \\
+    3     & No      & 16                  & 11                & 3 \\ \bottomrule
+    
+    \end{tabular}
+    \caption{Experimento A1, con 3 capas~\label{expA1}}
+    \end{table}
+    
+    
+    \begin{table}[h!]
+    \centering
+    
+    \begin{tabular}{@{}ccccc@{}}
+    \toprule
+    Capa & Dropout & Cantidad de kernels & Tamaño del kernel & Pooling window\\ \midrule
+    1     & No      & 6                   & 11                & 7 \\ \bottomrule
+    \end{tabular}
+    \caption{Experimento A2, con 1 capa~\label{expA2}}
+    \end{table}
+    
+    
+    \begin{table}[h!]
+    \centering
+    \begin{tabular}{@{}ccccc@{}}
+    \toprule
+    Capa & Dropout & Cantidad de kernels & Tamaño del kernel & Pooling window \\ \midrule
+    1     & No      & 6                   & 5                 & 7              \\
+    2     & Sí      & 8                   & 7                 & 5              \\
+    3     & No      & 12                  & 9                 & 3              \\
+    4     & Sí      & 12                  & 11                & 3              \\
+    5     & No      & 6                   & 11                & 3              \\ \bottomrule
+    \end{tabular}
+    \caption{Experimento A3, con 5 capas~\label{expA3}}
+    \end{table}
+    
+    
+\subsection{Preprocesamiento de los datos de entrada}
+    Para evaluar los experimentos especificados anteriormente, el conjunto de datos a utilizar serán los estados proporcionados por el entorno donde se encuentra el agente. Se pretenden realizar los experimentos anteriores con preprocesamiento de los datos y sin preprocesamiento.
+    \subsubsection{Datos sin preprocesar}
+        Corresponde a los datos originales proporcionados por el entorno. Cada imagen tiene las siguientes características:
+        \begin{itemize}
+            \item Tamaño de 512 x 288 píxeles.
+            \item Tiene tres canales de color (RGB)
+        \end{itemize}
+    \subsubsection{Datos preprocesados}
+        Se pretenden realizar algunos ajustes a los datos originales con el fin de verificar si el modelo aprende más rápido. Cada imagen quedaría con las siguientes características:
+        \begin{itemize}
+            \item Tamaño de 410 x 288 píxeles.
+            \item Un único canal de color (escala de grises)
+        \end{itemize}
+
+\subsection{Un experimento que se le ocurra}
+    Experimento\_interesante.png
+
+\section{Resultados}
 
 
 \bibliographystyle{IEEEtran}
